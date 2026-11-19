@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bloom Nails Studio</title>
+  <meta name="description" content="Bloom Nails Studio. Un espacio dedicado al cuidado y belleza de tus uñas.">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Georgia, serif;
+      background: #fffaf9;
+      color: #493b3b;
+    }
+
+    header {
+      text-align: center;
+      padding: 25px 15px;
+      background: #f5e5e4;
+    }
+
+    .brand {
+      font-size: 13px;
+      letter-spacing: 5px;
+      color: #987477;
+      text-transform: uppercase;
+    }
+
+    header h1 {
+      font-size: 34px;
+      font-weight: normal;
+      letter-spacing: 2px;
+      margin: 12px 0 5px;
+      color: #76575a;
+    }
+
+    header p {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      letter-spacing: 2px;
+      color: #987477;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 75px 22px;
+      background: linear-gradient(#fffaf9, #f5e8e7);
+    }
+
+    .hero .small {
+      font-size: 12px;
+      letter-spacing: 3px;
+      color: #a47b7e;
+      text-transform: uppercase;
+    }
+
+    .hero h2 {
+      font-size: 37px;
+      font-weight: normal;
+      line-height: 1.25;
+      margin: 20px 0;
+      color: #76575a;
+    }
+
+    .hero p {
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.8;
+      max-width: 420px;
+      margin: auto;
+      color: #776969;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 28px;
+      padding: 15px 27px;
+      background: #a77d80;
+      color: white;
+      text-decoration: none;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      letter-spacing: 2px;
+      border-radius: 2px;
+    }
+
+    section {
+      padding: 55px 22px;
+      text-align: center;
+    }
+
+    .section-label {
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: #ad8587;
+      text-transform: uppercase;
+    }
+
+    section h2 {
+      font-size: 30px;
+      font-weight: normal;
+      color: #76575a;
+      margin: 14px 0 25px;
+    }
+
+    .services {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 13px;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    .service {
+      background: #f5e9e8;
+      padding: 25px 10px;
+      min-height: 105px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #76575a;
+      font-size: 17px;
+    }
+
+    .about {
+      background: #f5e9e8;
+    }
+
+    .about p {
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.9;
+      max-width: 450px;
+      margin: auto;
+      color: #776969;
+    }
+
+    footer {
+      text-align: center;
+      padding: 35px 15px;
+      background: #76575a;
+      color: #fffaf9;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      line-height: 2;
+    }
+
+    @media (max-width: 360px) {
+      .hero h2 {
+        font-size: 30px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="brand">Nail Studio</div>
+    <h1>Bloom</h1>
+    <p>NAILS STUDIO</p>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div class="small">Beauty in every detail</div>
+      <h2>Un espacio para<br>consentir tus uñas.</h2>
+      <p>
+        Diseños, cuidado y dedicación en cada servicio.
+        Tu momento de belleza comienza aquí.
+      </p>
+      <a class="button" href="https://wa.me/527822118738?text=Hola%2C%20me%20gustar%C3%ADa%20informaci%C3%B3n%20sobre%20una%20cita%20en%20Bloom%20Nails%20Studio.">
+        CONTACTAR POR WHATSAPP
+      </a>
+    </div>
+
+    <section>
+      <div class="section-label">Nuestros servicios</div>
+      <h2>Elige tu estilo</h2>
+
+      <div class="services">
+        <div class="service">Rubber</div>
+        <div class="service">Soft Gel</div>
+        <div class="service">Builder Gel</div>
+        <div class="service">Polygel</div>
+        <div class="service">Acrílico</div>
+        <div class="service">Pedicure</div>
+        <div class="service">Retiro</div>
+        <div class="service">Spa</div>
+      </div>
+    </section>
+
+    <section class="about">
+      <div class="section-label">Bloom Nails Studio</div>
+      <h2>Detalles que hacen la diferencia</h2>
+      <p>
+        Un espacio cómodo y dedicado a realzar la belleza
+        de tus uñas, con atención cuidadosa, materiales
+        de calidad y diseños pensados para ti.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    BLOOM NAILS STUDIO<br>
+    Belleza en cada detalle ♡<br>
+    <a href="https://wa.me/527822118738"
+       style="color:#fffaf9;">WhatsApp</a>
+  </footer>
+
+</body>
+</html>
