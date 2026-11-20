@@ -221,10 +221,10 @@
     const SUPABASE_URL = 'https://eurizvtwznycanueaeco.supabase.co';
     const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV1cml6dnR3em55Y2FudWVhZWNvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUxNDMxNzMsImV4cCI6MjExMDcxOTE3M30.4BG7ud4GI8vt7SzF0Btxjm8NszxFDWryNv1VpSn1DEM';
 
-    const supabase = window.supabase.createClient(
-      SUPABASE_URL,
-      SUPABASE_KEY
-    );
+    window.supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
 
     console.log('Supabase conectado:', !!supabase);
   </script>
