@@ -156,7 +156,56 @@
         font-size: 30px;
       }
     }
-  </style>
+     #reservas {
+      background: #fffaf9;
+      padding: 60px 22px;
+    }
+
+    #reservation-form {
+      max-width: 430px;
+      margin: 30px auto 0;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    #reservation-form label {
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      color: #76575a;
+      margin-top: 10px;
+    }
+
+    #reservation-form input,
+    #reservation-form select,
+    #reservation-form textarea {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #ead8d7;
+      border-radius: 3px;
+      background: white;
+      color: #493b3b;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+    }
+
+    #reservation-form textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    #reservation-form button {
+      margin-top: 20px;
+      padding: 16px;
+      border: none;
+      background: #a77d80;
+      color: white;
+      font-family: Arial, sans-serif;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      } </style>
 </head>
 
 <body>
@@ -206,34 +255,232 @@
       </p>
     </section>
   </main>
+<section id="reservas">
+  <h2>Reserva tu cita</h2>
+  <p>Solicita tu espacio en Bloom Nails Studio.</p>
 
+  <form id="reservation-form">
+    <label>Nombre completo</label>
+    <input type="text" id="client-name" required>
+
+    <label>Teléfono</label>
+    <input type="tel" id="client-phone" required>
+
+    <label>Servicio</label>
+    <select id="service" required>
+      <option value="">Selecciona un servicio</option>
+      <option>Rubber</option>
+      <option>Soft Gel</option>
+      <option>Builder</option>
+      <option>Poly Gel</option>
+      <option>Híbrido</option>
+      <option>Acrílico</option>
+      <option>Pedicure + gel</option>
+      <option>Retiro</option>
+      <option>Spa</option>
+    </select>
+
+    <label>Largo de uñas</label>
+    <select id="nail-length">
+      <option>Corto</option>
+      <option>Mediano</option>
+      <option>Largo</option>
+      <option>Extra largo</option>
+    </select>
+<label>Fecha deseada</label>
+<input type="date" id="appointment-date" required>
+    <label>Horario disponible</label>
+<select id="appointment-time" required disabled>
+  <option value="">Primero selecciona una fecha</option>
+</select>
+
+    <label>Detalles de tu diseño</label>
+    <textarea id="design-notes"></textarea>
+
+    <button type="submit">Solicitar reservación</button>
+  </form>
+</section>
   <footer>
     BLOOM NAILS STUDIO<br>
     Belleza en cada detalle ♡<br>
     <a href="https://wa.me/527822118738"
        style="color:#fffaf9;">WhatsApp</a>
-    </footer>
+  </footer>
 
-  <!-- Supabase -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <script>
-    const SUPABASE_URL = 'https://eurizvtwznycanueaeco.supabase.co';
-    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV1cml6dnR3em55Y2FudWVhZWNvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUxNDMxNzMsImV4cCI6MjExMDcxOTE3M30.4BG7ud4GI8vt7SzF0Btxjm8NszxFDWryNv1VpSn1DEM';
+<script>
+  const SUPABASE_URL = 'https://eurizvtwznycanueaeco.supabase.co';
+  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV1cml6dnR3em55Y2FudWVhZWNvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUxNDMxNzMsImV4cCI6MjExMDcxOTE3M30.4BG7ud4GI8vt7SzF0Btxjm8NszxFDWryNv1VpSn1DEM';
 
-    window.supabaseClient = window.supabase.createClient(
+window.supabaseClient = window.supabase.createClient(
   SUPABASE_URL,
   SUPABASE_KEY
 );
+const serviceDurations = {
+  "Rubber": 60,
+  "Soft Gel": 90,
+  "Builder": 90,
+  "Poly Gel": 90,
+  "Híbrido": 90,
+  "Acrílico": 150,
+  "Pedicure + gel": 90,
+  "Retiro": 30,
+  "Spa": 5
+};
+  
+const appointmentDate = document.getElementById("appointment-date");
+const appointmentTime = document.getElementById("appointment-time");
+const serviceSelect = document.getElementById("service");
 
-    console.log('Supabase conectado:', !!supabase);
-  </script>
+appointmentDate.min = "2026-12-01";
+appointmentDate.max = "2026-12-31";
 
-  <!-- Herramienta temporal de diagnóstico -->
-  <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
-  <script>eruda.init();</script>
+async function updateAvailableTimes() {
+  const date = appointmentDate.value;
+  const service = serviceSelect.value;
 
-</body>
-</html>
+  appointmentTime.innerHTML = "";
+  appointmentTime.disabled = true;
+
+  if (!date || !service) {
+    appointmentTime.innerHTML =
+      '<option value="">Selecciona fecha y servicio</option>';
+    return;
+  }
+
+  const [year, month, day] = date.split("-").map(Number);
+  const selectedDate = new Date(year, month - 1, day);
+  const weekday = selectedDate.getDay();
+
+  const closedDates = [
+    "2026-12-24",
+    "2026-12-25",
+    "2026-12-31"
+  ];
+
+  const hours = {
+    1: [14 * 60, 20 * 60],
+    2: [9 * 60, 20 * 60],
+    4: [9 * 60, 20 * 60],
+    5: [9 * 60, 16 * 60],
+    6: [14 * 60, 20 * 60]
+  };
+
+  if (!hours[weekday] || closedDates.includes(date)) {
+    appointmentTime.innerHTML =
+      '<option value="">No hay servicio este día</option>';
+    return;
+  }
+
+  const duration = serviceDurations[service];
+
+  const { data, error } = await window.supabaseClient.rpc(
+    "get_busy_intervals",
+    { p_date: date }
+  );
+
+  if (error) {
+    appointmentTime.innerHTML =
+      '<option value="">Error al consultar horarios</option>';
+    console.error(error);
+    return;
+  }
+
+  const busy = (data || []).map(item => ({
+    start: Number(item.start_time.slice(0, 2)) * 60 +
+      Number(item.start_time.slice(3, 5)),
+    end: Number(item.end_time.slice(0, 2)) * 60 +
+      Number(item.end_time.slice(3, 5))
+  }));
+
+  const [opening, closing] = hours[weekday];
+  let available = 0;
+
+  for (let start = opening; start + duration + 10 <= closing; start += 30) {
+    const end = start + duration + 10;
+
+    const overlaps = busy.some(slot =>
+      start < slot.end && end > slot.start
+    );
+
+    if (!overlaps) {
+      const h = String(Math.floor(start / 60)).padStart(2, "0");
+      const m = String(start % 60).padStart(2, "0");
+      const option = document.createElement("option");
+
+      option.value = `${h}:${m}`;
+      option.textContent = `${h}:${m}`;
+      appointmentTime.appendChild(option);
+      available++;
+    }
+  }
+
+  if (available === 0) {
+    appointmentTime.innerHTML =
+      '<option value="">No hay horarios disponibles</option>';
+  } else {
+    appointmentTime.disabled = false;
+    appointmentTime.insertAdjacentHTML(
+      "afterbegin",
+      '<option value="">Selecciona un horario</option>'
+    );
+  }
+}
+
+appointmentDate.addEventListener("change", updateAvailableTimes);
+serviceSelect.addEventListener("change", updateAvailableTimes);
+
+const reservationForm = document.getElementById("reservation-form");
+
+reservationForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const button = reservationForm.querySelector('button[type="submit"]');
+  button.disabled = true;
+  button.textContent = "Enviando...";
+
+  const service = serviceSelect.value;
+  const duration = serviceDurations[service];
+
+  const nailLength = document.getElementById("nail-length").value;
+  const designNotes = document.getElementById("design-notes").value;
+
+  const notes = `Largo: ${nailLength}. Diseño: ${designNotes}`;
+
+  try {
+    const { data, error } = await window.supabaseClient.rpc(
+      "submit_reservation",
+      {
+        p_customer_name: document.getElementById("client-name").value,
+        p_phone: document.getElementById("client-phone").value,
+        p_service: service,
+        p_appointment_date: appointmentDate.value,
+        p_appointment_time: appointmentTime.value,
+        p_duration_minutes: duration,
+        p_notes: notes
+      }
+    );
+
+    if (error) {
+      console.error(error);
+      alert("No se pudo enviar la solicitud. Intenta nuevamente.");
+      return;
+    }
+
+    alert("¡Solicitud enviada! Tu cita está pendiente de aprobación.");
+    reservationForm.reset();
+    await updateAvailableTimes();
+
+  } catch (error) {
+    console.error(error);
+    alert("Ocurrió un error. Intenta nuevamente.");
+  } finally {
+    button.disabled = false;
+    button.textContent = "Solicitar reservación";
+  }
+});
+
+</script>
 </body>
 </html>
