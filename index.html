@@ -12,6 +12,99 @@
       padding: 0;
     }
 
+.service {
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  width: 100%;
+  border: 1px solid #ead5dc;
+  background: #fff;
+  transition: .2s ease;
+}
+
+.service:hover {
+  background: #fdf0f4;
+  border-color: #d9a8b8;
+  transform: translateY(-2px);
+}
+
+.service-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(40, 25, 32, .55);
+  padding: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.service-modal.active {
+  display: flex;
+}
+
+.service-modal-content {
+  position: relative;
+  background: #fffafb;
+  width: 100%;
+  max-width: 440px;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 30px 24px;
+  border-radius: 20px;
+  box-shadow: 0 12px 40px rgba(0,0,0,.15);
+}
+
+.service-modal-content h2 {
+  margin: 12px 0;
+}
+
+.service-modal-content p {
+  line-height: 1.7;
+  color: #65545b;
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 16px;
+  border: none;
+  background: transparent;
+  color: #75505e;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.recommended {
+  background: #fdf0f4;
+  border-radius: 12px;
+  padding: 15px;
+  margin-top: 18px;
+}
+
+.recommended strong {
+  color: #805467;
+}
+
+.modal-price {
+  font-weight: bold;
+  color: #9a6178 !important;
+  font-size: 19px;
+  margin-top: 18px;
+}
+
+.modal-ok {
+  width: 100%;
+  padding: 13px;
+  border: none;
+  border-radius: 30px;
+  background: #bd8299;
+  color: white;
+  font: inherit;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
     body {
       font-family: Georgia, serif;
       background: #fffaf9;
@@ -229,22 +322,10 @@
       </a>
     </div>
 
-    <section>
-      <div class="section-label">Nuestros servicios</div>
-      <h2>Elige tu estilo</h2>
-
-      <div class="services">
-        <div class="service">Rubber</div>
-        <div class="service">Soft Gel</div>
-        <div class="service">Builder Gel</div>
-        <div class="service">Polygel</div>
-        <div class="service">Acrílico</div>
-        <div class="service">Pedicure</div>
-        <div class="service">Retiro</div>
-        <div class="service">Spa</div>
-      </div>
-    </section>
-
+    
+<section>
+  
+ 
     <section class="about">
       <div class="section-label">Bloom Nails Studio</div>
       <h2>Detalles que hacen la diferencia</h2>
@@ -478,6 +559,95 @@ reservationForm.addEventListener("submit", async (event) => {
   } finally {
     button.disabled = false;
     button.textContent = "Solicitar reservación";
+  }
+});
+
+const serviceInfo = {
+  rubber: {
+    title: "Rubber Base",
+    description: "Es una base flexible y autonivelante que proporciona soporte a la uña natural sin añadir demasiado grosor. Ayuda a mejorar la resistencia y aporta un acabado uniforme.",
+    recommended: "Uñas naturales cortas o medianas, delgadas o ligeramente flexibles que necesitan un refuerzo ligero.",
+    price: "$200 MXN"
+  },
+  softgel: {
+    title: "Soft Gel",
+    description: "Es un sistema de extensiones con tips de gel suave que se adhieren a la uña natural. Permite conseguir longitud y una forma uniforme con un acabado ligero y natural.",
+    recommended: "Quienes desean alargar sus uñas y conseguir una apariencia delicada con extensiones ligeras.",
+    price: "$250 MXN"
+  },
+  builder: {
+    title: "Builder Gel",
+    description: "Es un gel constructor de mayor consistencia que permite reforzar, estructurar y dar forma a la uña. Ayuda a conseguir una superficie más resistente y uniforme.",
+    recommended: "Uñas naturales que necesitan mayor estructura, uñas flexibles o personas que desean conservar su longitud natural con refuerzo.",
+    price: "$250 MXN"
+  },
+  polygel: {
+    title: "Poly Gel",
+    description: "Es un producto híbrido que combina características del gel y el acrílico. Su consistencia permite moldearlo con precisión antes de curarlo, facilitando la construcción de extensiones resistentes.",
+    recommended: "Quienes desean extensiones personalizadas, mayor estructura o una longitud y forma específicas.",
+    price: "$280 MXN"
+  },
+  hibrido: {
+    title: "Sistema Híbrido",
+    description: "Combina dos sistemas de construcción para aprovechar sus diferentes propiedades y conseguir una estructura equilibrada, adaptada al diseño y las necesidades de cada uña.",
+    recommended: "Quienes buscan extensiones o refuerzo con una estructura personalizada.",
+    price: "$280 MXN"
+  },
+  acrilico: {
+    title: "Acrílico",
+    description: "Es un sistema de construcción que se forma al combinar polvo acrílico y líquido monómero. Al endurecerse, permite crear extensiones con una estructura firme y moldeable.",
+    recommended: "Quienes desean extensiones resistentes, diferentes longitudes y formas o una estructura más definida.",
+    price: "$300 MXN"
+  },
+  pedicure: {
+    title: "Pedicure + gel",
+    description: "Es un servicio de cuidado estético para los pies que incluye preparación de las uñas y aplicación de gel para conseguir un acabado uniforme, brillante y duradero.",
+    recommended: "Quienes desean mantener sus uñas de los pies arregladas y lucir un acabado bonito por más tiempo.",
+    price: "$200 MXN"
+  },
+  retiro: {
+    title: "Retiro de producto",
+    description: "Es el procedimiento para retirar cuidadosamente el material aplicado anteriormente, utilizando la técnica adecuada según el sistema que se lleve.",
+    recommended: "Quienes desean cambiar de diseño, renovar su aplicación o retirar el producto antes de realizar otro servicio.",
+    price: "$80 MXN (producto propio) / $100 MXN (producto externo)"
+  },
+  spa: {
+    title: "Spa Express",
+    description: "Es un tratamiento de relajación e hidratación para las manos que ayuda a suavizar la piel y brindar una sensación de frescura y bienestar. Incluye sales aromáticas, exfoliación, vapor relajante, hidratación profunda, masaje de manos y aceite de cutículas.",
+    recommended: "Manos resecas o para quienes desean complementar su cita con un momento de cuidado y relajación.",
+    price: "$70 MXN"
+  }
+};
+
+const serviceModal = document.getElementById("serviceModal");
+
+document.querySelectorAll("[data-service]").forEach(button => {
+  button.addEventListener("click", () => {
+    const info = serviceInfo[button.dataset.service];
+
+    if (!info) return;
+
+    document.getElementById("modalTitle").textContent = info.title;
+    document.getElementById("modalDescription").textContent = info.description;
+    document.getElementById("modalRecommended").textContent = info.recommended;
+    document.getElementById("modalPrice").textContent = info.price;
+
+    serviceModal.classList.add("active");
+    serviceModal.setAttribute("aria-hidden", "false");
+  });
+});
+
+function closeServiceModal() {
+  serviceModal.classList.remove("active");
+  serviceModal.setAttribute("aria-hidden", "true");
+}
+
+document.getElementById("closeServiceModal").addEventListener("click", closeServiceModal);
+document.getElementById("modalOk").addEventListener("click", closeServiceModal);
+
+serviceModal.addEventListener("click", event => {
+  if (event.target === serviceModal) {
+    closeServiceModal();
   }
 });
 
