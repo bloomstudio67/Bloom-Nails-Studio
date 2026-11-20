@@ -299,6 +299,24 @@
       text-transform: uppercase;
       cursor: pointer;
       } </style>
+  .price-notice {
+  max-width: 520px;
+  margin: -10px auto 25px;
+  padding: 14px 18px;
+  background: #fdf0f4;
+  border: 1px solid #ead5dc;
+  border-radius: 10px;
+  color: #805467;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+#reference-image {
+  padding: 12px;
+  border: 1px dashed #d9a8b8;
+  background: #fffafb;
+}
 </head>
 
 <body>
@@ -327,7 +345,11 @@
 <section id="servicios">
   <div class="section-label">Nuestros servicios</div>
   <h2>Elige tu estilo</h2>
-
+<p class="price-notice">
+  Los precios publicados son precios base. El costo final puede variar
+  dependiendo del diseño, largo y decoraciones solicitadas.
+  Se confirmará antes de realizar el servicio.
+</p>
   <div class="services">
     <button type="button" class="service" data-service="rubber">Rubber</button>
     <button type="button" class="service" data-service="softgel">Soft Gel</button>
@@ -409,7 +431,12 @@
 
     <label>Detalles de tu diseño</label>
     <textarea id="design-notes"></textarea>
-
+<label>Imagen de referencia (opcional)</label>
+<input
+  type="file"
+  id="reference-image"
+  accept="image/*"
+>
     <button type="submit">Solicitar reservación</button>
   </form>
 </section>
