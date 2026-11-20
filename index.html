@@ -323,7 +323,39 @@
     </div>
 
     
-<section>
+
+<section id="servicios">
+  <div class="section-label">Nuestros servicios</div>
+  <h2>Elige tu estilo</h2>
+
+  <div class="services">
+    <button type="button" class="service" data-service="rubber">Rubber</button>
+    <button type="button" class="service" data-service="softgel">Soft Gel</button>
+    <button type="button" class="service" data-service="builder">Builder Gel</button>
+    <button type="button" class="service" data-service="polygel">Poly Gel</button>
+    <button type="button" class="service" data-service="hibrido">Híbrido</button>
+    <button type="button" class="service" data-service="acrilico">Acrílico</button>
+    <button type="button" class="service" data-service="pedicure">Pedicure + gel</button>
+    <button type="button" class="service" data-service="retiro">Retiro</button>
+    <button type="button" class="service" data-service="spa">Spa Express</button>
+  </div>
+</section>
+
+<div class="service-modal" id="serviceModal" aria-hidden="true">
+  <div class="service-modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button type="button" class="modal-close" id="closeServiceModal" aria-label="Cerrar">×</button>
+    <div class="section-label">Bloom Nails Studio</div>
+    <h2 id="modalTitle"></h2>
+    <p id="modalDescription"></p>
+    <div class="recommended">
+      <strong>¿Para qué tipo de uñas se recomienda?</strong>
+      <p id="modalRecommended"></p>
+    </div>
+    <p class="modal-price" id="modalPrice"></p>
+    <button type="button" class="modal-ok" id="modalOk">Entendido</button>
+  </div>
+</div>
+
   
  
     <section class="about">
