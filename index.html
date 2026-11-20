@@ -212,8 +212,28 @@
     Belleza en cada detalle ♡<br>
     <a href="https://wa.me/527822118738"
        style="color:#fffaf9;">WhatsApp</a>
-  </footer>
-<script src="https://cdn.jsdelivr.net/npm/eruda"></script>
-<script>eruda.init();</script>
+    </footer>
+
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    const SUPABASE_URL = 'https://eurizvtwznycanueaeco.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV1cml6dnR3em55Y2FudWVhZWNvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUxNDMxNzMsImV4cCI6MjExMDcxOTE3M30.4BG7ud4GI8vt7SzF0Btxjm8NszxFDWryNv1VpSn1DEM';
+
+    const supabase = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY
+    );
+
+    console.log('Supabase conectado:', !!supabase);
+  </script>
+
+  <!-- Herramienta temporal de diagnóstico -->
+  <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+  <script>eruda.init();</script>
+
+</body>
+</html>
 </body>
 </html>
